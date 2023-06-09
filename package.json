@@ -1,0 +1,23 @@
+{
+  "name": "web_crawler-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node main.js",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/batursertan/web_crawler-http.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/batursertan/web_crawler-http/issues"
+  },
+  "homepage": "https://github.com/batursertan/web_crawler-http#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}
