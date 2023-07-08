@@ -1,1 +1,18 @@
-console.log('hello')
+
+
+function main(){
+    
+  }
+  
+
+
+
+
+
+
+
+
+
+
+
+  main()

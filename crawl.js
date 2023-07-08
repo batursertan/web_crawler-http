@@ -10,19 +10,42 @@ function normalizeURL(urlStr){
   return path
 } 
 catch (error) {
-  return 'please enter a valid URL(http included)'
+  return 'please enter a valid URL(https included)'
     
 }
 }
-module.exports ={
-    normalizeURL
-}
+
 
 function getURLsFromHTML(htmlBody, baseURL){
+  const urls = []
   const dom = new JSDOM(htmlBody)
-  const foundURL = dom.window.document.querySelector("a")
-  
-  return foundURL
+  const linkElements = dom.window.document.querySelectorAll('a')
+  for (const linkElement of linkElements){
+    if(linkElement.href.slice(0,1)=== "/"){
+      //relative url
+      try {
+        const urlObj = new URL(`${baseURL}${linkElement.href}`)
+        urls.push(urlObj.href)
+      } catch (error) {
+        console.log(`error with relative url: ${error.message}`)
+        
+      }
+      
+    }
+    else{
+      //absolute
+      try {
+        const urlObj = new URL(linkElement.href)
+        urls.push(urlObj.href)
+      } catch (error) {
+        console.log(`error with absolute url: ${error.message}`)
+        
+      }
+     
+    }
+    
+  }
+  return urls
 }
 
 
@@ -42,5 +65,6 @@ function getURLsFromHTML(htmlBody, baseURL){
 
 
 module.exports = {
-    normalizeURL
+    normalizeURL,
+    getURLsFromHTML
   }
