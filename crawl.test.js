@@ -23,7 +23,7 @@ test('normalize url with http',() => {
     expect(actual).toEqual(expected);
 });
 
- //test('normalize url already normalized (**FAILED**)',() => {
+ //test('without http (**FAILED**)',() => {
    // const input = 'wagsLane.dev/path'
     //const actual = normalizeURL(input)
     //const expected = 'wagslane.dev/path'
@@ -83,7 +83,7 @@ test('getURLsFromHTML invalid', ()=> {
     <html>
         <body>
             <a 
-            href="invalid">  
+            href="leyley lele leyley">  
             </a>
         </body>
     </html> 

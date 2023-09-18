@@ -10,7 +10,7 @@ function normalizeURL(urlStr){
   return path
 } 
 catch (error) {
-  return 'please enter a valid URL(https included)'
+  return 'please enter a valid URL'
     
 }
 }
@@ -49,11 +49,30 @@ function getURLsFromHTML(htmlBody, baseURL){
 }
 
 
+async function crawlPage(current_URL){
+  console.log(`crawling: ${current_URL}`)
 
 
+  try {
+    const resp = await fetch(current_URL)
 
+    if (resp.status > 399){
+      console.log(`error in fetch with status code: ${resp.status} on page: ${current_URL}`)
+      return
+    } 
 
+    const contentType = resp.headers.get("content-type")
+    if (!contentType.includes("text/html")){
+      console.log(`non html response, content type: ${contentType}, on page: ${current_URL}`)
+      return
+    }
 
+    console.log(await resp.text())
+  } catch (error) {
+      console.log(`error in fetch: ${error.message}, on page: ${current_URL}`)
+  }
+  
+}
 
 
 
@@ -66,5 +85,6 @@ function getURLsFromHTML(htmlBody, baseURL){
 
 module.exports = {
     normalizeURL,
-    getURLsFromHTML
+    getURLsFromHTML,
+    crawlPage
   }
